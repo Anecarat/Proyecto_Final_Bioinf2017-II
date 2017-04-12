@@ -1,21 +1,19 @@
-#MiSeq 16S rRNA
+#MiSeq 16S rRNA analyzed
+
+#Start mothur
+mothur
 
 #make.contigs reads a forward fastq file and a reverse fastq file and outputs new fasta and report files.
-
 #ffastq and rfastq are forward and reverse fatsq archives.
- 
 #The findex and rindex parameters are used to provide a forward/reverse index files to process. If you use an index file, you must provide an oligos file.The index file is a fastq file containing barcodes for the reads.
-
 #oligos is the file that has the primer and barcode information.
-
 #pdiffs is maximum number of differences to the primer sequence, default=0. bdiffs is maximum number of differences to the barcode sequence, default=0. tdiffs is maximum total number of differences to the barcode and primer.
-
 #processors tells how many processors you would like to use.
 make.contigs(ffastq=Reads_R1.fastq, rfastq=Reads_R2.fastq, findex=Indx_I1.fastq, oligos=oligos_16SMiSeqv3.oligos, pdiffs=2, bdiffs=1,processors=4)
 
 #summary.seqs command will summarize the quality of sequences in an unaligned or aligned fasta-formatted sequence file.
 # fasta is the input file in .fasta format. 
-mothur > summary.seqs(fasta=Reads_R1.trim.contigs.fasta)
+summary.seqs(fasta=Reads_R1.trim.contigs.fasta)
 
 #screen.seqs command enables you to keep sequences that fulfill certain user defined criteria.
 
