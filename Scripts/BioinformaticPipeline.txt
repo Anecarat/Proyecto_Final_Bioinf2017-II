@@ -1,0 +1,142 @@
+# This pipeline uses the script â€œfilter_contaminants.plâ€ by Scott Yourstone, which is freely available as part of the BioUtils package (https://sourceforge.net/projects/bioutilsperllib/files). 
+
+# This pipeline uses custom scripts â€œprocess_jgi.plâ€ and â€œmerge_miseq.plâ€ by Sur Herrera Paredes, which are freely available at Surâ€™s Gist â€œPROCESS JGIâ€: https://gist.github.com/surh/3e5792121426c0f5bc846714d305da26
+
+# This pipeline references a database of 16S gene sequences of known contaminants that can be found in Supplementary Table 6 of Lundberg et al. (2013) "Practical innovations for high-throughput amplicon sequencingâ€, Nature Methods 10: 999-1002.
+
+********
+1) TRIMMING, DEMULTIPLEXING, MERGING PAIRED ENDS
+
+Each MiSeq run from the JGI was downloaded as a single FASTQ file containing all reads for the run.
+All JGI MiSeq run files had the suffix "ncontam.nphix.fastq".
+Within each file, Read1 immediately followed by Read2.
+The first step was to remove primer sequences, demultiplex the sequences, and then merge (overlap) Read1 with Read2.
+This was done using a custom code "process_jgi.pl" (provided), run separately on each MiSeq run.
+The merging in "process_jgi.pl" was accomplished using a dependent script called "merge_miseq_jgi.pl".
+In turn, ""merge_miseq_jgi.pl" makes use of the program FLASH (Magoc et al 2011, http://ccb.jhu.edu/software/FLASH/)
+Flash parameters used were "-m 30 -M 240 -x 0.25 -r 240 -f 282 -s 20"
+Barcodes for demultiplexing were provided in a separate file from the JGI with suffix "barcodes.fasta"
+
+Example syntax: 
+	cat  $dir/*ncontam.nphix.fastq | sed 's/ \([12]\)\:N\:0\:\([ACGT]\{11\}\)$/\#\2\/\1/' > $dir/$run.ncontam.nphix2.fastq"
+	process_jgi.pl -infile $dir/*ncontam.nphix2.fastq -Fprimer 515F -Rprimer 806R -t 240 -mapping_file $dir/*barcodes.fasta
+
+The result was a FASTA file for each MiSeq run.
+
+NOTE: The European Nucleotide Archive requires all samples to be demultiplexed, with Read1 and Read2 as separate files.
+Therefore to replicate our analysis, one needs to download Read1 and Read2 from each individual sample.
+Primers must be trimmed, and then Read1 and Read2 must be merged using FLASH. 
+
+Read1 primer
+515F: GTGYCAGCMGCCGCGGTAA
+remove the following regular expression from READ1: ".*GTG.CAGC.GCCGCGGTAA"
+
+Read2 primer
+806R: GGACTACNVGGGTWTCTAAT
+remove the following regular expression from READ2: ".*GGACTAC..GGGT.TCTAAT
+
+
+
+
+
+********
+2) CONCATENATING All FASTA FILES INTO A SINGLE FASTA
+
+Files from MiSeq run were concatenated into a single FASTA file representing the entire project
+
+Example syntax: 
+	cat run1.qc.fasta run2.qc.fasta run3.qc.fasta > allplates.fasta
+
+
+
+
+
+********
+3) UPARSE PIPELINE. 
+
+# Set a variable to give a short name for the USEARCH binary
+u=/exampledir1/usearch7.0.1001_i86linux64
+
+# Variable for directory containing input data (reads and ref. db)
+d=/exampledir2
+
+# Location of scripts (including USEARCH SCRIPTS http://drive5.com/)
+bin=/exampledir3
+
+# Location of Qiime scripts
+qiime=/exampledir4
+
+# Dereplication
+$u -derep_fulllength $d/allplates.fasta -output $d/derep.fa -sizeout
+
+# Abundance sort and discard singletons
+$u -sortbysize $d/derep.fa -output $d/sorted.fa -minsize 2
+
+# OTU clustering
+#For 97% OTUs
+$u -cluster_otus $d/sorted.fa -otus $d/otus1.fa
+#99% OTUs
+$u -cluster_otus $d/sorted.fa -otus $d/otus99_1.fa -otu_radius_pct 1 -sizeout -uparseout $d/results99.txt
+
+# Chimera filtering using reference database
+#For 97% OTUs
+$u -uchime_ref $d/otus1.fa -db $d/rRNA16S.gold.fasta -strand plus -nonchimeras $d/otus2.fa
+#99% OTUs
+$u -uchime_ref $d/otus99_1.fa -db $d/rRNA16S.gold.fasta -strand plus -nonchimeras $d/otus99_2.fa
+
+# Label OTU sequences OTU_1, OTU_2...
+#For 97% OTUs
+python $bin/fasta_number.py $d/otus2.fa OTU_ > $d/otus.fa
+#99% OTUs
+python $bin/fasta_number.py $d/otus99_2.fa OTU_ > $d/otus99.fa
+
+# Map reads (including singletons) back to OTUs
+#For 97% OTUs
+$u -usearch_global $d/allplates.fasta -db $d/otus.fa -strand plus -id 0.97 -uc $d/map.uc
+#For 99% OTUs
+$u -usearch_global $d/allplates.fasta -db $d/otus99.fa -strand plus -id 0.99 -uc $d/map99.uc
+
+#from pure USEARCH to convert to a format Qiime can use ("readmap2qiime.py" at http://www.drive5.com/otupipe/readmap2qiime.txt)
+	#One need not use Qiime for the following steps. UPARSE provides these functions.  We used Qiime because it was familiar and available.
+#For 97% OTUs
+$bin/readmap2qiime.py $d/map.uc > $d/otu_clusters.txt
+#For 99% OTUs
+$bin/readmap2qiime.py $d/map99.uc > $d/otu_clusters99.txt
+
+#to biom format via Qiime
+#For 97% OTUs
+$qiime/make_otu_table.py -i $d/otu_clusters.txt -o $d/otu_table.biom
+#For 99% otus
+$qiime/make_otu_table.py -i $d/otu_clusters99.txt -o $d/otu_table99.biom
+
+#to normal OTU table via Qiime
+$qiime/biom convert -i $d/otu_table.biom -o $d/otu_table.txt -b
+#99% otus
+$qiime/biom convert -i $d/otu_table99.biom -o $d/otu_table99.txt -b
+
+#zip files
+#97% otus
+bsub -q week -n 1 bzip2 -k $d/otu_table.txt
+bsub -q week -n 1 bzip2 -k $d/otus.fa
+#99% otus
+bsub -q week -n 1 bzip2 -k $d/otu_table99.txt
+bsub -q week -n 1 bzip2 -k $d/otus99.fa
+
+
+
+
+
+
+********
+4) ASSIGNING TAXONOMY AND REMOVING CONTAMINANT SEQUENCES
+
+#97% OTUs (for 99% OTUs corresponding files are substituted)
+# Remove contaminants by BLAST that are specified in the contaminants database using custom script "filter_contaminants.pl"
+module load blast
+perl $bin/filter_contaminants.pl --params_file $d/contam_filter_params.txt 
+
+# To classify the OTU to a taxonomy via Qiime and the greengenes database use the command:
+$qiime/assign_taxonomy.py -i $d/otus.fa -c 0.5 -o $d/greengenes/gg_taxonomy -r $d/greengenes/gg_otus_may2013/gg_13_5_otus/rep_set/97_otus.fasta -t $d/greengenes/gg_otus_may2013/gg_13_5_otus/taxonomy/greengenes_tax_rdp_train_2013.txt
+
+#zip files
+bzip2 -k $d/greengenes/gg_taxonomy/otus_tax_assignments.txt
