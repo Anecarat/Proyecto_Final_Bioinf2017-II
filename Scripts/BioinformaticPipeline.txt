@@ -1,6 +1,6 @@
-# This pipeline uses the script â€œfilter_contaminants.plâ€ by Scott Yourstone, which is freely available as part of the BioUtils package (https://sourceforge.net/projects/bioutilsperllib/files). 
+# This pipeline uses the script filter_contaminants.pl by Scott Yourstone, which is freely available as part of the BioUtils package (https://sourceforge.net/projects/bioutilsperllib/files). 
 
-# This pipeline uses custom scripts â€œprocess_jgi.plâ€ and â€œmerge_miseq.plâ€ by Sur Herrera Paredes, which are freely available at Surâ€™s Gist â€œPROCESS JGIâ€: https://gist.github.com/surh/3e5792121426c0f5bc846714d305da26
+# This pipeline uses custom scripts process_jgi.pl and merge_miseq.pl by Sur Herrera Paredes, which are freely available at Sur's Gist PROCESS JGI: https://gist.github.com/surh/3e5792121426c0f5bc846714d305da26
 
 # This pipeline references a database of 16S gene sequences of known contaminants that can be found in Supplementary Table 6 of Lundberg et al. (2013) "Practical innovations for high-throughput amplicon sequencingâ€, Nature Methods 10: 999-1002.
 
