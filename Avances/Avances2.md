@@ -1,11 +1,10 @@
 ---
 author: Víctor Taracena
 Date: 28 de abril 2017
-Title: Avances 2
-output: html_document
 ---
 
 ##Diario del capitán
+
 (Hay una versión Too long; don't read más abajo)
 
 Resulta que el primer mapa y las instrucciones para llegar al tesoro (a.k.a. el proyecto final de Bioinfo) eran muy confusas y poco informativas, por lo que decidí buscar un nuevo mapa del tesoro. 
