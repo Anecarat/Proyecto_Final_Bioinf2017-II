@@ -1,0 +1,26 @@
+16S rRNA gene copy number estimates -> Eco_Field_copynumest_forR.txt
+
+Glucosinolate data -> Ecotypes_field_glucosinolates.txt 
+
+OTU phylogeny -> phylogeny.tre 
+
+Field site coordinates -> site_coords_Ecotypes.txt
+
+Soil / environmental data -> soildata.txt
+
+Sample metadata -> SMD.txt
+
+OTU table (97%) -> otuTable97.txt.bz2
+
+Contaminant OTUs -> contaminants.fasta
+
+OTU taxonomic assignments (97%) -> taxAssignments97.txt
+
+Taxonomic assignments for OTUs binned at 99% -> taxAssignments99.txt
+
+Representative OTU 16S rRNA gene sequences -> OTUrepSeqs97.fa
+
+OTU table ( 99%) -> otuTable99.txt.bz2
+
+Key to Plant IDs -> plant_key.txt (111.7 Kb)
+
