@@ -32,4 +32,9 @@ Estuve revisando los datos y scripts del trabajo de Wagner y he empezado a anota
 
 Repetiré lo que hicieron y complementaré con algunos análisis que sean más afines a lo que yo intento realizar. 
 
+##Complemento avances 2. 
+Wagner et al. vió cómo el genotipo, la edad y localidad de las plantas modifican la diversidad de bacterias asociadas a las hojas y races. Planeo replicar sus análisis y complementar con curvas de rarefacción, análisis de diversidad alfa y beta. También proporcionan los datos crudos, por lo que planeo agarrar al menos una muestra y replicar los análisis de limpieza de datos crudos hasta la obtención de OTUs. 
+
+
+
 
