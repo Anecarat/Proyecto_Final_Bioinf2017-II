@@ -3,7 +3,7 @@ author: Víctor Taracena
 Date: 28 de abril 2017
 ---
 
-##Diario del capitán
+## Diario del capitán
 
 (Hay una versión Too long; don't read más abajo)
 
@@ -19,7 +19,7 @@ Pasé varios días intentando descifrar todas las anotaciones de Lady Wagner. A 
 Por ahora, he acomodado todas las anotaciones de Lady Wagner en mi propia bitácora, he empezado a organizar y ver qué necesito. He empezado a seguir algunas rutas para ver a dónde llego y pronto empezaré a hacer mis propias anotaciones e instrucciones para llegar al tesoro, no sólo con las instrucciones de Lady Wagner, si no también trazando una ruta con mis propios intereses y finalidades.
 
 
-##Too long; don't read: 
+## Too long; don't read: 
 
 Se decidió cambiar de repositario ya que el primero no estaba bien documentado. 
 
@@ -31,5 +31,10 @@ El nuevo repositorio y su artículo son los siguientes:
 Estuve revisando los datos y scripts del trabajo de Wagner y he empezado a anotar qué programas y lenguajes necesito utilizar para replicar lo que hicieron. Ya tengo todos los datos y scripts en mi repositorio. 
 
 Repetiré lo que hicieron y complementaré con algunos análisis que sean más afines a lo que yo intento realizar. 
+
+## Complemento avances 2. 
+Wagner et al. vió cómo el genotipo, la edad y localidad de las plantas modifican la diversidad de bacterias asociadas a las hojas y races. Planeo replicar sus análisis y complementar con curvas de rarefacción, análisis de diversidad alfa y beta. También proporcionan los datos crudos, por lo que planeo agarrar al menos una muestra y replicar los análisis de limpieza de datos crudos hasta la obtención de OTUs. 
+
+
 
 
