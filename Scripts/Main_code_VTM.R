@@ -35,7 +35,7 @@ system('mv taxAssignments97.txt raw_data')
 system('mv taxAssignments99.txt.bz2 raw_data')
 
 #### You need to unzip the .bz2 files
-
+############################## Aquí me quedé!!! ###############
 system('bzip2 -dk Raw_Data/otuTable97.txt.bz2')
 
 
