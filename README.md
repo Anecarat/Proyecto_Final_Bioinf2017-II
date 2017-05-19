@@ -1,7 +1,18 @@
-# READ ME
+# README
 ## Proyecto final de Bioinformática
 
-El presente proyecto contiene los datos, scripts e información necesaria para el pre-procesamiento de secuencias crudas, 
-hasta los análisis de diversidad para muestras de microbiomas asociados a hojas y raíces de *Boecheria stricta*. 
-Los datos fueron tomados del repositorio de datos de [Wagner et al. (2016)](http://dx.doi.org/10.1038/ncomms12151) y los scripts 
-generados están basados en los scripts de Wagner et al. y el [workflow](https://f1000research.com/articles/5-1492/v1) de bioconductor de Callaghan et al.
+El presente proyecto contiene los datos, scripts e información necesaria para realizar, desde el pre-procesamiento de datos crudos, hasta los análisis de diversidad para secuencias del gen del 16S del rRNA obtenidas de comunidades de bacterias. 
+
+Los datos fueron tomados del [repositorio](http://dx.doi.org/10.1038/ncomms12151) de datos de Wagner et al. (2016) y los scripts generados están basados en los scripts de este mismo repositorio y el [workflow](https://f1000research.com/articles/5-1492/v1) de bioconductor de Callaghan et al.
+
+## Contenido
+
+En esta carpeta encontrarás los siguientes archivos: 
+- **0.MasterScript:** En este script se encuentra la iformación de la sesión de R con la que se trabajó el proyecto, además de los comandos necesarios para crear las carpetas, acomodar los archivos e instalar todas las paqueterías necesarias para correr los análisis. 
+- **Initial:** En esta carpeta se encuentran los scripts y datos iniciales para realizar los análisis. 
+
+## ¿Qué hace este proyecto?
+
+Dentro de los archivos que se encuentran en la carpeta **Initial**, se encuentran otros cuatro scripts que realizan lo siguiente: 
+- **1.PreProcessing:** Este script contiene las instrucciones necesarias para procesar las secuencias crudas, tal cual se entregan de la plataforma de IlluminaMiSeq. Incluye la eliminación de los barcodes y primers, análisis de calidad de las secuencias y el trimming de éstas, la unión de las muestras en una misma tabla, la eliminación de quimeras y generación de unidades taxonómicas operacionales (OTU).
+- **2.AssignTaxonomy:** En este script se clasificarán taxonómicamente cada uno de los OTUs, se construirá el árbol filogenético de las muestras y se anexarán datos ambientales relevantes de las muestras a la tabla de OTUs.
