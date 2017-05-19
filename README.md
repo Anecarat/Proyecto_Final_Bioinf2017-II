@@ -8,7 +8,7 @@ Los datos fueron tomados del [repositorio](http://dx.doi.org/10.1038/ncomms12151
 ## Contenido
 
 En esta carpeta encontrarás los siguientes archivos: 
-- **0.MasterScript:** En este script se encuentra la iformación de la sesión de R con la que se trabajó el proyecto, además de los comandos necesarios para crear las carpetas, acomodar los archivos e instalar todas las paqueterías necesarias para correr los análisis. 
+- **0.MasterScript:** En este script se encuentra la información de la sesión de R con la que se trabajó el proyecto, además de los comandos necesarios para crear las carpetas, acomodar los archivos e instalar todas las paqueterías necesarias para correr los análisis. 
 - **Initial:** En esta carpeta se encuentran los scripts y datos iniciales para realizar los análisis. 
 
 ## ¿Qué hace este proyecto?
