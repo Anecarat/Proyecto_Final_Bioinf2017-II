@@ -16,6 +16,6 @@ En esta carpeta encontrarás los siguientes archivos:
 Dentro de los archivos que se encuentran en la carpeta **Initial**, se encuentran otros cuatro scripts que realizan lo siguiente: 
 - **1.PreProcessing:** Este script contiene las instrucciones necesarias para procesar las secuencias crudas, tal cual se entregan de la plataforma de IlluminaMiSeq. Incluye la eliminación de los barcodes y primers, análisis de calidad de las secuencias y el trimming de éstas, la unión de las muestras en una misma tabla, la eliminación de quimeras y generación de unidades taxonómicas operacionales (OTU).
 - **2.AssignTaxonomy:** En este script se clasificarán taxonómicamente cada uno de los OTUs, se construirá el árbol filogenético de las muestras y se anexarán datos ambientales relevantes de las muestras a la tabla de OTUs.
-- **3.DiversityAnalyses:** En este, se encuentran los comandos para calcular diferentes índices de diversidad \alfa y \beta, además de curvas de rarefacción de cada una de las muestras. 
+- **3.DiversityAnalyses:** En este, se encuentran los comandos para calcular diferentes índices de diversidad alfa y beta, además de curvas de rarefacción de cada una de las muestras. 
 - **4.MultivariateAnalyses:** Finalmente, en este script se realizarán algunas pruebas multivariadas (aún por definir cuáles; no sé si son diferentes aproximaciones a lo mismo o cada una aporta informacón diferente) para analizar la similitud entre las muestras. 
 
