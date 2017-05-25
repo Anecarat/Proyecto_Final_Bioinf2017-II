@@ -13,7 +13,7 @@ Obviously, you have to open the **OPENME** directory where you will find the nex
 
 ## What do you need to do first?
 
-You need to open the **OPENME** directory, load the **0.MasterScript.R** into R and run it. This will create all the directories you need and move the files to where they belong. 
+You need to open the **OPENME** directory, load the **0.MasterScript.R** into R, set your working directory to source file location and run it. This will create all the directories you need and move the files to where they belong. 
 
 ## And then?
 
