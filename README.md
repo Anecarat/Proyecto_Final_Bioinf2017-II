@@ -1,21 +1,35 @@
 # README
-## Proyecto final de Bioinformática: Análisis de la comunidad de bacterias asociadas a las raíces y hojas de *Boecheria stricta*
+## Workflow: From 16S rRNA gene sequencing raw data to community analyses. 
 
-El presente proyecto contiene los datos, scripts e información necesaria para realizar, desde el pre-procesamiento de datos crudos, hasta los análisis de diversidad para secuencias del gen del 16S del rRNA obtenidas de comunidades de bacterias asociadas a *B. stricta*. 
+The present workflow contains the scripts with the necessary commands to load, trimm, clean, generate OTUs, create phyloseq objects and some exploratory analysis for 16S rRNA gene sequences of bacterial communities using only R. 
+This workflow (and the data used for running the examples) is based in Wagner's and collaborators' (2016) research of the effect of host genotype, age and site in the microbial communities of leaves and roots of *Boecheria stricta* ([Dryad repository](http://dx.doi.org/10.1038/ncomms12151)) and the [bioconductor workflow](https://f1000research.com/articles/5-1492/v1) published by Callaghan and his collaborators to process raw sequencing data in R.
 
-Los datos fueron tomados del [repositorio](http://dx.doi.org/10.1038/ncomms12151) de datos de Wagner et al. (2016) y los scripts generados están basados en los scripts de este mismo repositorio y el [workflow](https://f1000research.com/articles/5-1492/v1) de bioconductor de Callaghan et al.
+## Content
 
-## Contenido
+Here you will find the **README** that you just opened and you are reading at the moment and a directory called **OPENME**.
+Obviously, you have to open the **OPENME** directory where you will find the next files:
+- **0.MasterScript:** The first script you will need to run. This one will organize and create the environment to work the consequent scripts. Also, you will find the session information of the PC where I ran this workflow.  
+- **Initial:** This directory contains the 'raw data' and scripts you will use later. 
 
-En esta carpeta encontrarás los siguientes archivos: 
-- **0.MasterScript:** En este script se encuentra la información de la sesión de R con la que se trabajó el proyecto, además de los comandos necesarios para crear las carpetas, acomodar los archivos e instalar todas las paqueterías necesarias para correr los análisis. 
-- **Initial:** En esta carpeta se encuentran los scripts y datos iniciales para realizar los análisis. 
+## What do you need to do first?
 
-## ¿Qué hace este proyecto?
+You need to open the **OPENME** directory, load the **0.MasterScript.R** into R and run it. This will create all the directories you need and move the files to where they belong. 
 
-Dentro de los archivos que se encuentran en la carpeta **Initial**, se encuentran otros cuatro scripts que realizan lo siguiente: 
-- **1.PreProcessing:** Este script contiene las instrucciones necesarias para procesar las secuencias crudas, tal cual se entregan de la plataforma de IlluminaMiSeq. Incluye la eliminación de los barcodes y primers, análisis de calidad de las secuencias y el trimming de éstas, la unión de las muestras en una misma tabla, la eliminación de quimeras y generación de unidades taxonómicas operacionales (OTU).
-- **2.AssignTaxonomy:** En este script se clasificarán taxonómicamente cada uno de los OTUs, se construirá el árbol filogenético de las muestras y se anexarán datos ambientales relevantes de las muestras a la tabla de OTUs.
-- **3.DiversityAnalyses:** En este, se encuentran los comandos para calcular diferentes índices de diversidad alfa y beta, además de curvas de rarefacción de cada una de las muestras. 
-- **4.MultivariateAnalyses:** Finalmente, en este script se realizarán algunas pruebas multivariadas (aún por definir cuáles; no sé si son diferentes aproximaciones a lo mismo o cada una aporta informacón diferente) para analizar la similitud entre las muestras. 
+## And then?
+
+Well, after that you now have the environment to run everything. Inside the **bin** directory you will find these four scripts:
+
+- **1.PreProcessing:** Everything you need to do firstwith your raw sequences; from barcode, primer and quality trimming,to OTU generation. 
+- **2.AssignTaxonomy:** Taxa assignment to the OTUs, creation of phyloseq objects and data base cleaning. 
+- **3.DiversityAnalyses:** Alpha diversity exploratory analyses and other useful plots. Also, the map of the site. 
+- **4.MultivariateAnalyses:** PCoA of the bacteria communities (analysis and plot).
+
+You can read more about what each script does inside each script, at the beginning. 
+
+## README IMPORTANT
+
+Due to the size of the files, I don't provide the raw sequences to run the first script (1.PreProcessing.R) and half of the second (2.AssignTaxonomy.R), so if you want to run the scripts with the data for an example of how this workflow works you need to run the **0.MasterScript.R** first (don't forget it) and then run the **2.AssignTaxonomy.R** script after the **README IMPORTANT 2**. 
+
+The first and second scripts also have this information to know where to start with the data I provide. The data I used to run the exampes are a subset of the samples taken by Wagner and collaborators ([2016](http://dx.doi.org/10.1038/ncomms12151)) and don't belong to me.
+
 
