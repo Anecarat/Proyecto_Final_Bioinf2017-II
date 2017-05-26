@@ -19,7 +19,7 @@ You need to open the **OPENME** directory, load the **0.MasterScript.R** into R,
 
 Well, after that you now have the environment to run everything. Inside the **bin** directory you will find these four scripts:
 
-- **1.PreProcessing:** Everything you need to do firstwith your raw sequences; from barcode, primer and quality trimming,to OTU generation. 
+- **1.PreProcessing:** Everything you need to do first with your raw sequences; from barcode, primer and quality trimming,to OTU generation. 
 - **2.AssignTaxonomy:** Taxa assignment to the OTUs, creation of phyloseq objects and data base cleaning. 
 - **3.DiversityAnalyses:** Alpha diversity exploratory analyses and other useful plots. Also, the map of the site. 
 - **4.MultivariateAnalyses:** PCoA of the bacteria communities (analysis and plot).
